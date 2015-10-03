@@ -1,0 +1,15 @@
+#PRocess for Enumerating a website's domains and IP space (cisco is the example)
+#First you use wget to download the sites index.html file
+
+wget www.cisco.com
+
+#The following command greps and outputs all of the subdomains for cisco.com and put it in a txt file
+
+grep -o '[A-Za-z0-9\.-]*\.*cisco.com' index.html |sort -u > cisco.txt
+
+#The following will take the txt file created above and list the ip addresses associated
+
+#!/bin/bash
+for url in $(cat filename.txt);do
+host $url |grep "has address" | cut -d" " -f4
+done
