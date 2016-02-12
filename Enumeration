@@ -10,3 +10,7 @@ for url in $(cat filename.txt);do
 host $url
 done
 
+#or it all (from line 4 down) can be accomplished in one script
+
+for url in $(grep -o '[A-za-z0-9_\.-]*\.url.com' index.html |sort-u]; do host $url |grep "has address"|cut -d" " -f4; done
+
