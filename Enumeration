@@ -1,0 +1,12 @@
+#The following will pull the indext.html from a site and grep it to a readable format
+#!/bash/bin
+wget www.url.com
+grep -o '[A-Za-z0-9_\.-]*\.url.com' index.html |sort -u > filename.txt
+
+#The following is used to associate hosts with IP address from the grep'd file
+#!/bash/bin
+
+for url in $(cat filename.txt);do
+host $url
+done
+
