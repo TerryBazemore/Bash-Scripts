@@ -1,0 +1,1 @@
+rm index* | wget www.cisco.com | cat index.html | grep -o 'http://[^"]*' | cut -d "/" -f 3| sort -u >> list.txt |for url in $(cat list.txt); do host $url; done  | grep "has address" | sort -u >> iplist.txt | awk '{print $1,=,$4;}' iplist.txt >> combolist.txt | column -tx -c 2 combolist.txt 
